@@ -64,9 +64,7 @@ public class RegistrationRequestController {
                       courseOffering.getRegistrationRequestList().add(userAddedRequest);
                       courseOfferingService.updateCourseOffering(courseOffering);
                       }
-
                 });
-
             }
         });
         return "successfully created a registration request";

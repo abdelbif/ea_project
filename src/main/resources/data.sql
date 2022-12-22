@@ -6,10 +6,6 @@ insert into address (id, street, city, postal_code, state_province, country_regi
 insert into registration_event (id, end_date, start_date) values (19,'2022-12-17','2022-12-10' )
 insert into registration_event (id, end_date, start_date) values (4,'2021-12-20','2021-12-10' )
 
-insert into users (id, email, password, role) values (11111, 'admin', '$2y$10$haJbTaeEWOCz9UAr9BCHv./mH8fPfKX/9aDEuvlHUWf91w59VFbFS', 'admin')
-insert into users (id, email, password, role) values (5, 'abdel@gmail.con', '$2y$10$jqeOh0yTGp6SCc0QHsT6Yuxo/O4dN3mrQUVKKD9fo.jJgS.8ureAO', 'student')
-insert into users (id, email, password, role) values (6, 'emma@gmail.con', '$2y$10$jqeOh0yTGp6SCc0QHsT6Yuxo/O4dN3mrQUVKKD9fo.jJgS.8ureAO', 'student')
-insert into users (id, email, password, role) values (7, 'papy@gmail.con', '$2y$10$jqeOh0yTGp6SCc0QHsT6Yuxo/O4dN3mrQUVKKD9fo.jJgS.8ureAO', 'student')
 
 insert into person ( id, last_name, email,first_name, password) values ( 5, 'Jean','abdel@gmail.con','Roody', '12345')
 insert into person ( id, last_name, email,first_name, password) values ( 6, 'Emma','emma@gmail.con','Tippoh', '12345')

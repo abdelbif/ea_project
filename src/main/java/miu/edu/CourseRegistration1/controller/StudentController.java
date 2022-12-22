@@ -3,8 +3,8 @@ package miu.edu.CourseRegistration1.controller;
 import lombok.AllArgsConstructor;
 import miu.edu.CourseRegistration1.entity.Student;
 import miu.edu.CourseRegistration1.entity.Users;
+import miu.edu.CourseRegistration1.rabbitMQ.service.RabbitService;
 import miu.edu.CourseRegistration1.service.StudentService;
-import miu.edu.CourseRegistration1.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class StudentController {
     StudentService studentService;
-    UserService userService;
+
+    RabbitService rabbitService;
 
     @PostMapping("")
     public String createStudent(@RequestBody Student s){
@@ -24,7 +25,6 @@ public class StudentController {
         u.setEmail(s.getEmail());
         u.setPassword(s.getPassword());
         u.setId(s.getId());
-        userService.addUser(u);
         return "student successfully created";
     }
 
@@ -36,7 +36,7 @@ public class StudentController {
     @DeleteMapping("/{id}")
     public String deleteStudentById(@PathVariable Long id){
         Student s = studentService.findStudentByStudentId(id);
-        userService.deleteUserById(id);
+        rabbitService.sendMessage("delete "+ id);
         studentService.deleteStudentById(id);
         return "successfully deleted student with id: " + s.getStudentID();
     }

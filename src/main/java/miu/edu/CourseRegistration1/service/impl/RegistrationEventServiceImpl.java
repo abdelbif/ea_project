@@ -1,5 +1,6 @@
 package miu.edu.CourseRegistration1.service.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import miu.edu.CourseRegistration1.entity.RegistrationEvent;
@@ -11,6 +12,7 @@ import miu.edu.CourseRegistration1.service.RegistrationEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +23,6 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Service
 public class RegistrationEventServiceImpl implements RegistrationEventService {
-
     @Autowired
     RegistrationEventRepo registrationEventRepo;
 
@@ -117,4 +118,13 @@ public class RegistrationEventServiceImpl implements RegistrationEventService {
 
 
 
+    public void run(String...args) throws Exception{
+        RegistrationEventModel registrationEventModel = new RegistrationEventModel("registration event closed", new Date(2022, 12, 17),new Date(2022,12,17));
+        //converting to JSON string
+        ObjectMapper objectMapper = new ObjectMapper();
+        String registrationEventAsString = objectMapper.writeValueAsString(registrationEventModel);
+
+        System.out.println("Sending a JMS message:" + registrationEventAsString);
+//        jmsTemplate.convertAndSend("registrationEventQueue",registrationEventAsString);
+    }
 }

@@ -3,6 +3,7 @@ package miu.edu.CourseRegistration1.controller;
 import lombok.AllArgsConstructor;
 import miu.edu.CourseRegistration1.entity.RegistrationEvent;
 import miu.edu.CourseRegistration1.model.RegistrationEventModel;
+import miu.edu.CourseRegistration1.rabbitMQ.service.RabbitService;
 import miu.edu.CourseRegistration1.security.AwesomeUserDetails;
 import miu.edu.CourseRegistration1.service.impl.RegistrationEventServiceImpl;
 import org.springframework.security.core.Authentication;
@@ -16,6 +17,9 @@ import java.util.List;
 @RequestMapping("/registration-events")
 public class RegistrationEventController {
     RegistrationEventServiceImpl registrationEvent;
+
+    RabbitService rabbitService;
+
 
     @GetMapping("/latest")
     public RegistrationEventModel getLatestRegistrationEvent(){
@@ -59,6 +63,10 @@ public class RegistrationEventController {
     public  String updateRegistrationEvent(@PathVariable Long id, @RequestBody RegistrationEvent event){
         registrationEvent.updateRegistrationEvent(event, id);
         return  "success";
+    }
+
+    @GetMapping("/test")
+    public void sendingMessage() throws Exception {
     }
 
 }

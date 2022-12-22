@@ -13,7 +13,12 @@ services:
     ports:
       - "5432:5432"
     restart: unless-stopped
-
+  rabbitMQ:
+    container_name: "rabbitmq-service"
+    image: rabbitmq:3.9.11-management-alpine
+    ports:
+      - "15672:15672"
+      - "35672:5672"
 #  pgadmin:
 #    container_name: pgadmin-security
 #    image: dpage/pgadmin4
